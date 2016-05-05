@@ -27,17 +27,18 @@ public class ObjectPlus implements Serializable {
     }
 
     public void checkUniquenessOf(String attribute, Object value) throws UniquenessException {
-        if (attributeValues.containsKey(attribute)) {
-            for (Object o : attributeValues.get(attribute)) {
+        String attributeKey = this.getClass().getName() + "." + attribute;
+        if (attributeValues.containsKey(attributeKey)) {
+            for (Object o : attributeValues.get(attributeKey)) {
                 if (o.equals(value)) {
-                    throw new UniquenessException("Atrybut " + attribute + " klasy " + this.getClass().getSimpleName() + " o wartości " + value.toString() + " już istnieje!");
+                    throw new UniquenessException("Atrybut " + attributeKey + " o wartości " + value.toString() + " już istnieje!");
                 }
             }
         } else {
-            attributeValues.put(attribute, new HashSet<>());
+            attributeValues.put(attributeKey, new HashSet<>());
         }
 
-        attributeValues.get(attribute).add(value);
+        attributeValues.get(attributeKey).add(value);
     }
 
     public static void saveClassInstances(ObjectOutputStream stream) throws IOException {

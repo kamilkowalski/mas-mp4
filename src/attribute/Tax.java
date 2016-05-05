@@ -4,6 +4,9 @@ public class Tax {
     private String name;
     private int percentage;
 
+    private static final int MAX_PERCENTAGE = 100;
+    private static final int MIN_PERCENTAGE = 0;
+
     public Tax(String name, int percentage) throws Exception {
         setName(name);
         setPercentage(percentage);
@@ -14,11 +17,11 @@ public class Tax {
     }
 
     public void setPercentage(int percentage) throws Exception {
-        if (percentage > 100) {
+        if (percentage > MAX_PERCENTAGE) {
             throw new Exception("Podatek nie może przekraczać 100%");
         }
 
-        if (percentage <= 0) {
+        if (percentage <= MIN_PERCENTAGE) {
             throw new Exception("Podatek musi być dodatni");
         }
 

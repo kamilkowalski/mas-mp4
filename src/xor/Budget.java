@@ -10,6 +10,7 @@ public class Budget {
     public Budget(double value) {
         setValue(value);
     }
+
     public Budget(double value, Project project) throws Exception {
         this(value);
         setProject(project);
