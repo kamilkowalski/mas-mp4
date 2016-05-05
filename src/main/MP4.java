@@ -2,11 +2,19 @@ package main;
 
 
 import attribute.Tax;
+import history.Asset;
+import history.AssetOwnership;
+import history.Company;
 import ordered.Invoice;
 import ordered.InvoiceEntry;
 import subset.Board;
 import subset.User;
 import unique.Product;
+import xor.Budget;
+import xor.Project;
+import xor.Team;
+
+import java.util.Date;
 
 public class MP4 {
     public static void main(String[] args) {
@@ -51,5 +59,25 @@ public class MP4 {
         inv.addEntry(new InvoiceEntry("Zszywki, 20 szt.", 10, 6.55));
 
         System.out.println(inv.toString());
+
+        // history
+        Asset lodowka = new Asset("Lodówka Bosch", 1500, 15);
+        Company firma = new Company("Prószyński", "Prószyński sp. z o. o.", "Warszawa", "Aleje Jerozolimskie 15");
+
+        AssetOwnership ownership = new AssetOwnership(lodowka, firma, new Date(), new Date());
+
+        System.out.println(ownership.toString());
+
+        // xor
+        Team team = new Team("Drużyna A");
+        Project project = new Project("Project 1", new Date());
+        Budget budget = new Budget(15000);
+
+        try {
+            budget.setProject(project);
+            budget.setTeam(team);
+        } catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }
