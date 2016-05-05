@@ -2,6 +2,8 @@ package main;
 
 
 import attribute.Tax;
+import custom.CustomInvoice;
+import custom.Payment;
 import history.Asset;
 import history.AssetOwnership;
 import history.Company;
@@ -76,6 +78,18 @@ public class MP4 {
         try {
             budget.setProject(project);
             budget.setTeam(team);
+        } catch(Exception e) {
+            System.out.println(e.toString());
+        }
+
+        // custom
+        CustomInvoice faktura2 = new CustomInvoice("01/2016", 150);
+        Payment platnosc1 = new Payment("Karta", 50);
+        Payment platnosc2 = new Payment("Gotówka", 101);
+
+        try {
+            faktura2.addPayment(platnosc1);
+            faktura2.addPayment(platnosc2);
         } catch(Exception e) {
             System.out.println(e.toString());
         }
